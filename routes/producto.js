@@ -4,10 +4,10 @@ const db = require('../config/db');
 
 // Registrar los productos
 router.post('/registrar-producto', (req, res) => {
-    const { Nombre, Descripcion, Precio, Imagen, Stock = 0 } = req.body;
+    const { Nombre, Descripcion, Precio, Imagen, Stock = 0, Categoria } = req.body;
 
     // Validación
-    if (!Nombre || !Descripcion || !Precio || !Imagen) {
+    if (!Nombre || !Descripcion || !Precio || !Imagen || !Categoria) {
         return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
@@ -18,9 +18,9 @@ router.post('/registrar-producto', (req, res) => {
         return res.status(400).json({ message: 'Precio y Stock deben ser numéricos' });
     }
 
-    // Consulta SQL
-    const query = 'INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Imagen) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [Nombre, Descripcion, precioNumber, stockNumber, Imagen], (err, result) => {
+    // Consulta SQL actualizada
+    const query = 'INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Imagen, Categoria) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(query, [Nombre, Descripcion, precioNumber, stockNumber, Imagen, Categoria], (err, result) => {
         if (err) {
             console.error('Error al registrar el producto:', err);
             return res.status(500).json({ message: 'Error al registrar el producto', error: err.message });
