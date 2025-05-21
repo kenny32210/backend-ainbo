@@ -4,8 +4,8 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 
 // Register route
-router.post('/registro', async (req, res) => {
-    console.log('Registro de usuario:', req.body);
+router.post('/registrar', async (req, res) => {
+    console.log( req.body);
     // Desestructuración de los datos del cuerpo de la solicitud
     const { Nombre, Apellido, Email, NumeroCelular, Contraseña } = req.body;
     
@@ -33,7 +33,7 @@ router.post('/registro', async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Error en el servidor', error: err.message });
+        res.status(500).json({message: 'Error al registrar el usuario', error: err.message});
     }
 });
 
