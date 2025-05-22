@@ -4,7 +4,7 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 
 // Register route
-router.post('/registrar', async (req, res) => {
+router.post('/registro', async (req, res) => {
     console.log( req.body);
     // Desestructuración de los datos del cuerpo de la solicitud
     const { Nombre, Apellido, Email, NumeroCelular, Contraseña } = req.body;
@@ -28,8 +28,9 @@ router.post('/registrar', async (req, res) => {
             }
             res.status(201).json({ 
                 message: 'Usuario registrado exitosamente',
-                userId: result.insertId 
+                userId: result.insertId
             });
+            
         });
     } catch (err) {
         console.error(err);
