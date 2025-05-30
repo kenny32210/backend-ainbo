@@ -10,6 +10,12 @@ const productoRoutes = require('./routes/producto');
 const passwordRoutes = require('./routes/password');
 
 // Middleware para parsear el JSON
+const loginRoutes = require('./routes/login');
+const productoRoutes = require('./routes/producto');
+
+
+//midlware para parsear el json
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

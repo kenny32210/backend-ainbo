@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt');
 // Ruta para registro normal
 router.post('/registro', async (req, res) => {
     console.log('Registro de usuario:', req.body);
+    console.log( req.body);
+    // Desestructuración de los datos del cuerpo de la solicitud
     const { Nombre, Apellido, Email, NumeroCelular, Contraseña } = req.body;
 
     if (!Nombre || !Apellido || !Email || !NumeroCelular || !Contraseña) {
@@ -23,12 +25,13 @@ router.post('/registro', async (req, res) => {
             }
             res.status(201).json({ 
                 message: 'Usuario registrado exitosamente',
-                userId: result.insertId 
+                userId: result.insertId
             });
+            
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Error en el servidor', error: err.message });
+        res.status(500).json({message: 'Error al registrar el usuario', error: err.message});
     }
 });
 

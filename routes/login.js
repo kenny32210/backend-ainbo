@@ -3,9 +3,6 @@ const router = express.Router();
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 
-
-
-
 router.post('/login', (req, res) => {
     console.log(req.body);
     const {Email, Contraseña} = req.body;
@@ -49,10 +46,6 @@ router.post('/login', (req, res) => {
         }
     );
 });
-
-module.exports = router;
-
-
 
 
 router.post('/login/google', async (req, res) => {
@@ -126,3 +119,5 @@ router.post('/login/google', async (req, res) => {
  });
 
 });
+
+module.exports = router;
